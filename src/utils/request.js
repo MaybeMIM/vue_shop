@@ -13,6 +13,8 @@ const http = axios.create({
 // 添加请求拦截器
 http.interceptors.request.use(function (config) {
     // 在发送之前做什么
+    // 为请求体对象，添加token验证的Authorization字段
+    config.headers.Authorization = window.sessionStorage.getItem('token')
     return config;
 }, function (error) {
     // 对请求错误做什么

@@ -42,8 +42,8 @@ export default {
     return {
       // 登录表单的数据绑定对象
       loginForm: {
-        username: "",
-        password: "",
+        username: "admin",
+        password: "123456",
       },
       rules: {
         username: [{ required: true, message: "请输入账号", trigger: "blur" }],
@@ -67,7 +67,7 @@ export default {
         } else {
           const { data } = await Login(this.loginForm);
           // const { data } = await this.$http.post('login',this.loginForm);
-          console.log(data);
+          // console.log(data);
           if (data.meta.status !== 200) return this.$message.error("登录失败!");
           this.$message.success("登录成功");
           // 登录成功后将 token 存入会话存储中(会话存储是网站打开期间生效) 随后发生跳转
