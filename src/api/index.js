@@ -32,3 +32,27 @@ export const EditUser = (data) => {
 export const deleteUser = (data) => {
     return http.delete(`users/${data}`, data)
 }
+// 请求所有权限信息
+export const getRightsList = () => {
+    return http.get('rights/list')
+}
+// 请求所有权限信息
+export const getRolesList = () => {
+    return http.get('roles')
+}
+// 删除用户权限
+export const deleteRight = (role, rightId) => {
+    return http.delete(`roles/${role.id}/rights/${rightId}`, role, rightId)
+}
+// 请求所有权限列表
+export const getRight = () => {
+    return http.get('rights/tree')
+}
+// 请求更改分配权限
+export const allotRight = (id, params) => {
+    return http.post(`roles/${id}/rights`, params)
+}
+// 请求分配用户角色
+export const EditRole = (data, params) => {
+    return http.put(`users/${data.id}/role`, params)
+}

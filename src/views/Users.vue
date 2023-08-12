@@ -67,7 +67,11 @@
               :enterable="false"
             >
               <!-- 分配权限 -->
-              <el-button type="warning" icon="el-icon-setting"></el-button
+              <el-button
+                type="warning"
+                icon="el-icon-setting"
+                @click="setRole(scope.row)"
+              ></el-button
             ></el-tooltip>
           </template>
         </el-table-column>
@@ -122,6 +126,28 @@
         <el-button type="primary" @click="submit">确 定</el-button>
       </span>
     </el-dialog>
+    <!-- 分配权限的对话框 -->
+    <el-dialog title="分配角色" :visible.sync="Rolevisible" width="50%">
+      <div>
+        <p>当前用户：{{ userinfo.username }}</p>
+        <p>当前角色：{{ userinfo.role_name }}</p>
+        <p>
+          分配新角色：<el-select v-model="selectRoleId" placeholder="请选择">
+            <el-option
+              v-for="item in roleList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id"
+            >
+            </el-option>
+          </el-select>
+        </p>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="Rolevisible = false">取 消</el-button>
+        <el-button type="primary" @click="saveRoleInfo">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -132,6 +158,8 @@ import {
   addUser,
   EditUser,
   deleteUser,
+  getRolesList,
+  EditRole,
 } from "../api";
 export default {
   name: "Users",
@@ -199,6 +227,14 @@ export default {
           // { validator: checkMobile, trigger: "blur" },
         ],
       },
+      // 分配权限对话框
+      Rolevisible: false,
+      // 想要被分配角色的用户信息
+      userinfo: {},
+      // 所有角色的数据列表
+      roleList: [],
+      // 已选择的角色id值
+      selectRoleId: "",
     };
   },
   methods: {
@@ -239,6 +275,7 @@ export default {
       this.isVisible = false;
 
       this.$refs.addForm.resetFields();
+      this.addForm = {};
     },
     // 添加用户
     submit() {
@@ -306,6 +343,33 @@ export default {
           });
         });
     },
+    // 展开分配角色对话框
+    setRole(userinfo) {
+      this.userinfo = userinfo;
+      // 获取所有角色列表
+      getRolesList().then(({ data }) => {
+        if (data.meta.status !== 200) {
+          return this.$message.error("获取角色列表失败！");
+        }
+        this.roleList = data.data;
+      });
+
+      this.Rolevisible = true;
+    },
+    // 点击确定 分配角色
+    saveRoleInfo() {
+      if (!this.selectRoleId) {
+        return this.$message.error("请选择要分配的角色");
+      }
+      EditRole(this.userinfo, { rid: this.selectRoleId }).then(({ data }) => {
+        if (data.meta.status !== 200) {
+          return this.$message.error("更新角色失败！");
+        }
+        this.$message.success("更新角色成功！");
+        this.getUserListd();
+        this.Rolevisible = false;
+      });
+    },
   },
   mounted() {
     this.getUserListd();
@@ -313,19 +377,5 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-.el-breadcrumb {
-  margin-bottom: 15px;
-  font-size: 14px;
-}
-.el-card {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-}
-.el-table {
-  margin-top: 15px;
-  font-size: 14px;
-}
-.el-pagination {
-  margin-top: 15px;
-}
+<style scoped>
 </style>
