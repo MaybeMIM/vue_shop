@@ -8,6 +8,7 @@ import Roles from "../views/power/Roles"
 import Rights from "../views/power/Rights"
 import Cate from '../views/goods/Cate'
 import Params from "../views/goods/Params"
+import Report from '../views/report/report'
 Vue.use(VueRouter)
 
 
@@ -37,6 +38,9 @@ const router = new VueRouter({
         }
         , {
           path: '/params', component: Params
+        }
+        , {
+          path: '/reports', component: Report
         }
       ]
     },

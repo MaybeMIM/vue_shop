@@ -92,3 +92,7 @@ export const editParams = (cateId, attrId, params) => {
 export const deleteParams = (cateId, attrId) => {
     return http.delete(`categories/${cateId}/attributes/${attrId}`)
 }
+//1.11.1 请求折线图数据
+export const getCross = () => {
+    return http.get(`reports/type/1`)
+}
