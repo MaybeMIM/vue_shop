@@ -72,3 +72,23 @@ export const editCate = (params) => {
 export const deleteCate = (data) => {
     return http.delete(`categories/${data}`, data)
 }
+//1.7.1 请求所有商品分类列表
+export const getParamsList = (cateId, params) => {
+    return http.get(`categories/${cateId}/attributes`, params)
+}
+//1.7.2 请求所有商品分类列表
+export const addParams = (cateId, params) => {
+    return http.post(`categories/${cateId}/attributes`, params)
+}
+//1.7.4 请求所有商品分类列表
+export const getParams = (cateId, attrId, params) => {
+    return http.get(`categories/${cateId}/attributes/${attrId}`, params)
+}
+//1.7.5 请求所有商品分类列表
+export const editParams = (cateId, attrId, params) => {
+    return http.put(`categories/${cateId}/attributes/${attrId}`, params)
+}
+//1.7.3 请求所有商品分类列表
+export const deleteParams = (cateId, attrId) => {
+    return http.delete(`categories/${cateId}/attributes/${attrId}`)
+}
