@@ -1,14 +1,27 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from "../components/Login"
-import Home from "../components/Home"
-import Welcome from '../components/Welcome'
-import User from '../views/Users.vue'
-import Roles from "../views/power/Roles"
-import Rights from "../views/power/Rights"
-import Cate from '../views/goods/Cate'
-import Params from "../views/goods/Params"
-import Report from '../views/report/report'
+// 路由懒加载
+const Login = () => import(/*webpackChunkName:"login_home_welcome" */"../components/Login")
+// import Login from "../components/Login"
+const Home = () => import(/*webpackChunkName:"login_home_welcome" */"../components/Home")
+// import Home from "../components/Home"
+const Welcome = () => import(/*webpackChunkName:"login_home_welcome" */"../components/Welcome")
+// import Welcome from '../components/Welcome'
+
+// import User from '../views/Users.vue'
+const User = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/Users")
+// import Roles from "../views/power/Roles"
+const Roles = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/power/Roles")
+// import Rights from "../views/power/Rights"
+const Rights = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/power/Rights")
+
+// import Cate from '../views/goods/Cate'
+const Cate = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/goods/Cate")
+// import Params from "../views/goods/Params"
+const Params = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/goods/Params")
+// import Report from '../views/report/report'
+const Report = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/report/report")
+
 Vue.use(VueRouter)
 
 
