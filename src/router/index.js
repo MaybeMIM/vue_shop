@@ -21,6 +21,7 @@ const Cate = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/goo
 const Params = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/goods/Params")
 const List = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/goods/List")
 const Add = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/goods/Add")
+const Order = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/order/Order")
 // import Report from '../views/report/report'
 const Report = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/report/report")
 
@@ -63,6 +64,11 @@ const router = new VueRouter({
         , {
           path: '/goods/Add', component: Add
         }
+        , {
+          path: '/orders', component: Order
+        }
+        ,
+
       ]
     },
   ]

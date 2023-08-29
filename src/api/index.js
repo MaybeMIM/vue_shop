@@ -105,7 +105,14 @@ export const deleteGood = (goodId) => {
     return http.delete(`goods/${goodId}`)
 }
 
-
+//1.10.1  获取订单数据列表
+export const getOrdersList = (params) => {
+    return http.get(`orders`, params)
+}
+//1.10.5  获取订单数据列表
+// export const getProgress = (params) => {
+//     return http.get(`kuaidi/:804909574412544580`, params)
+// }
 
 //1.11.1 请求折线图数据
 export const getCross = () => {

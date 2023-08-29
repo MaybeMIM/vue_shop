@@ -38,7 +38,7 @@
         <el-table-column label="创建时间" prop="add_time" width="175px">
           <template slot-scope="scope">
             <!-- 调用时间过滤器 -->
-            {{ scope.row.add_time | dataFormat }}
+            {{ scope.row.add_time | dateFormat }}
           </template>
         </el-table-column>
         <el-table-column label="操作" width="250px">
