@@ -92,6 +92,21 @@ export const editParams = (cateId, attrId, params) => {
 export const deleteParams = (cateId, attrId) => {
     return http.delete(`categories/${cateId}/attributes/${attrId}`)
 }
+//1.8.1 请求所有商品分类列表
+export const getGoodsList = (params) => {
+    return http.get(`goods`, params)
+}
+//1.8.2 请求所有商品分类列表
+export const addGoods = (params) => {
+    return http.post('goods', params)
+}
+//1.8.3 删除单个商品
+export const deleteGood = (goodId) => {
+    return http.delete(`goods/${goodId}`)
+}
+
+
+
 //1.11.1 请求折线图数据
 export const getCross = () => {
     return http.get(`reports/type/1`)
