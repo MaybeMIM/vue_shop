@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// 路由懒加载
+// --------------------路由懒加载---------------------------
 const Login = () => import(/*webpackChunkName:"login_home_welcome" */"../components/Login")
 // import Login from "../components/Login"
 const Home = () => import(/*webpackChunkName:"login_home_welcome" */"../components/Home")
@@ -16,14 +16,15 @@ const Roles = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/po
 const Rights = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/power/Rights")
 
 // import Cate from '../views/goods/Cate'
-const Cate = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/goods/Cate")
+const Cate = () => import(/*webpackChunkName:"Cate_Params" */"../views/goods/Cate")
 // import Params from "../views/goods/Params"
-const Params = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/goods/Params")
-const List = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/goods/List")
-const Add = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/goods/Add")
-const Order = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/order/Order")
+const Params = () => import(/*webpackChunkName:"Cate_Params" */"../views/goods/Params")
+
+const List = () => import(/*webpackChunkName:"List_Add" */"../views/goods/List")
+const Add = () => import(/*webpackChunkName:"List_Add" */"../views/goods/Add")
+const Order = () => import(/*webpackChunkName:"Report_Order" */"../views/order/Order")
 // import Report from '../views/report/report'
-const Report = () => import(/*webpackChunkName:"Uers_Rights_Roles" */"../views/report/report")
+const Report = () => import(/*webpackChunkName:"Report_Order" */"../views/report/report")
 
 Vue.use(VueRouter)
 
