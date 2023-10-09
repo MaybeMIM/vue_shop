@@ -43,12 +43,7 @@
         </el-table-column>
         <el-table-column label="操作" width="250px">
           <template slot-scope="scope">
-            <el-button type="primary" icon="el-icon-edit"></el-button>
-            <el-button
-              type="danger"
-              icon="el-icon-delete"
-              @click="deleteGood(scope.row.goods_id)"
-            ></el-button>
+            <el-button type="danger" icon="el-icon-delete" @click="deleteGood(scope.row.goods_id)"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -143,5 +138,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

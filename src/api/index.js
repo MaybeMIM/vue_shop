@@ -37,8 +37,20 @@ export const getRightsList = () => {
     return http.get('rights/list')
 }
 //1.5.1 请求所有权限信息
+export const addRoles = (roleName, roleDesc) => {
+    return http.post('roles', { roleName: roleName, roleDesc: roleDesc })
+}
+//1.5.2 请求所有权限信息
 export const getRolesList = () => {
     return http.get('roles')
+}
+//1.5.4 编辑用户
+export const editRoles = (role, roleName, roleDesc) => {
+    return http.put(`roles/${role}`, { roleId: role, roleName: roleName, roleDesc: roleDesc })
+}
+//1.5.5 删除用户
+export const deleteRoles = (role) => {
+    return http.delete(`roles/${role.id}`, role)
 }
 //1.5.7 删除用户权限
 export const deleteRight = (role, rightId) => {

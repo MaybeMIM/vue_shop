@@ -23,9 +23,7 @@
         <el-table-column label="是否付款" prop="pay_status"></el-table-column>
         <el-table-column label="是否发货" prop="is_send">
           <template slot-scope="scope">
-            <el-tag type="success" v-if="scope.row.pay_status === '1'"
-              >已付款</el-tag
-            >
+            <el-tag type="success" v-if="scope.row.pay_status === '1'">已付款</el-tag>
             <el-tag type="danger" v-else>未付款</el-tag>
           </template>
         </el-table-column>
@@ -36,54 +34,26 @@
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button
-              type="primary"
-              icon="el-icon-edit"
-              @click="showBox"
-            ></el-button>
-            <el-button
-              type="success"
-              icon="el-icon-location"
-              @click="showProgressBox"
-            ></el-button>
+            <el-button type="primary" icon="el-icon-edit" @click="showBox"></el-button>
+            <el-button type="success" icon="el-icon-location" @click="showProgressBox"></el-button>
           </template>
         </el-table-column>
       </el-table>
 
       <!-- 分页 -->
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="queryInfo.pagenum"
-        :page-sizes="[5, 10, 15]"
-        :page-size="queryInfo.pagesize"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
-        background
-      >
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+        :current-page="queryInfo.pagenum" :page-sizes="[5, 10, 15]" :page-size="queryInfo.pagesize"
+        layout="total, sizes, prev, pager, next, jumper" :total="total" background>
       </el-pagination>
     </el-card>
     <!-- 修改地址的对话框 -->
 
-    <el-dialog
-      title="修改地址"
-      :visible.sync="dialogVisible"
-      width="50%"
-      @close="Closed"
-    >
-      <el-form
-        :model="addressForm"
-        :rules="addressrules"
-        ref="addressForm"
-        label-width="100px"
-      >
+    <el-dialog title="修改地址" :visible.sync="dialogVisible" width="50%" @close="Closed">
+      <el-form :model="addressForm" :rules="addressrules" ref="addressForm" label-width="100px">
         <el-form-item label="省市区/县" prop="address1">
           <!-- 数据源 cityData vm会双向绑定到addressForm中 -->
-          <el-cascader
-            :props="{ expandTrigger: 'hover' }"
-            :options="cityData"
-            v-model="addressForm.address1"
-          ></el-cascader>
+          <el-cascader :props="{ expandTrigger: 'hover' }" :options="cityData"
+            v-model="addressForm.address1"></el-cascader>
         </el-form-item>
         <el-form-item label="详细地址" prop="address2">
           <el-input v-model="addressForm.address2"></el-input>
@@ -91,9 +61,7 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false"
-          >确 定</el-button
-        >
+        <el-button type="primary" @click="editMessage">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -102,15 +70,9 @@
     <el-dialog title="物流进度" :visible.sync="ProgressVisible" width="50%">
       <!-- 时间线 -->
       <el-timeline>
-        <el-timeline-item
-          v-for="(activity, index) in progressInfo"
-          :key="index"
-          :timestamp="activity.time"
-          placement="top"
-        >
-          <el-card
-            ><span>{{ activity.context }}</span></el-card
-          >
+        <el-timeline-item v-for="(activity, index) in progressInfo" :key="index" :timestamp="activity.time"
+          placement="top">
+          <el-card><span>{{ activity.context }}</span></el-card>
         </el-timeline-item>
       </el-timeline>
     </el-dialog>
@@ -178,6 +140,10 @@ export default {
     // 展示修改地址的对话框
     showBox() {
       this.dialogVisible = true;
+    },
+    editMessage() {
+      this.$message.success("编辑成功");
+      this.dialogVisible = false
     },
     // 关闭对话框清空里面数据
     Closed() {
