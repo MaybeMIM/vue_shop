@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import store from './store'
 // (项目优化： 将样式以CDN的方式 引入在 index.html 中)
 import './plugins/element.js'
 // 全局样式
@@ -46,5 +47,6 @@ Vue.filter('dateFormat', function (originVal) {
 })
 new Vue({
     router,
+    store,
     render: h => h(App)
 }).$mount('#app')

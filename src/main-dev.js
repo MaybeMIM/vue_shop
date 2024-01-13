@@ -3,6 +3,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import './plugins/element.js'
+import store from './store'
 // 全局样式
 import './assets/css/globle.css'
 // 树形元素结构
@@ -42,5 +43,6 @@ Vue.filter('dateFormat', function (originVal) {
 })
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
